@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>game pulse.com</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <h1>👋 Hello World!</h1><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GamePulse — The Future of Gaming News</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #020408;
+  --bg2: #080e18;
+  --bg3: #0c1420;
+  --bg4: #111d2e;
+  --neon-blue: #00d4ff;
+  --neon-purple: #8b5cf6;
+  --neon-pink: #f472b6;
+  --neon-green: #00ff88;
+  --accent: #0ea5e9;
+  --text: #e2e8f0;
+  --text-muted: #64748b;
+  --text-dim: #334155;
+  --border: rgba(0,212,255,0.15);
+  --border2: rgba(139,92,246,0.2);
+  --glow: 0 0 20px rgba(0,212,255,0.3);
+  --glow-purple: 0 0 20px rgba(139,92,246,0.4);
+  --radius: 8px;
+  --radius-lg: 14px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Exo 2', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* SCANLINE OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--neon-blue); border-radius: 3px; }
+
+/* TYPOGRAPHY */
+h1,h2,h3,h4,h5 { font-family: 'Rajdhani', sans-serif; letter-spacing: 0.02em; line-height: 1.2; }
+.mono { font-family: 'Share Tech Mono', monospace; }
+
+/* ── BREAKING NEWS TICKER ── */
+.ticker-wrap {
+  background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 100;
+}
+.ticker-label {
+  display: inline-block;
+  background: #ff1744;
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 2px;
+  padding: 8px 16px;
+  text-transform: uppercase;
+  vertical-align: middle;
+  white-space: nowrap;
+  animation: pulse-label 1.5s ease-in-out infinite;
+}
+@keyframes pulse-label { 0%,100%{opacity:1} 50%{opacity:0.7} }
+.ticker-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: ticker 40s linear infinite;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #fff;
+  padding: 8px 0;
+  vertical-align: middle;
+}
+.ticker-track span { margin: 0 40px; }
+.ticker-track span::before { content: '◆ '; opacity: 0.6; }
+@keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* ── NAVBAR ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  background: rgba(2,4,8,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 60px;
+}
+.nav-logo {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 32px;
+  white-space: nowrap;
+}
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  box-shadow: var(--glow);
+}
+.logo-pulse { color: var(--neon-blue); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-link:hover { color: var(--neon-blue); background: rgba(0,212,255,0.07); }
+.nav-link.active { color: var(--neon-blue); background: rgba(0,212,255,0.1); }
+.nav-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 12px;
+  margin-left: 12px;
+  transition: border-color 0.2s;
+  min-width: 200px;
+}
+.nav-search:focus-within { border-color: var(--neon-blue); box-shadow: var(--glow); }
+.nav-search input {
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: 'Exo 2', sans-serif;
+  font-size: 13px;
+  width: 100%;
+}
+.nav-search input::placeholder { color: var(--text-dim); }
+.nav-search svg { color: var(--text-muted); flex-shrink: 0; }
+.nav-btn {
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 8px 18px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-left: 12px;
+  white-space: nowrap;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.nav-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* ── LAYOUT ── */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+main { display: grid; grid-template-columns: 1fr 320px; gap: 32px; padding: 32px 20px; max-width: 1280px; margin: 0 auto; }
+@media(max-width:900px){ main { grid-template-columns: 1fr; } }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 60px 20px 50px;
+}
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1280px; margin: 0 auto; }
+@media(max-width:768px){ .hero-grid { grid-template-columns: 1fr; } }
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 60% at 70% 50%, rgba(139,92,246,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 80% at 20% 30%, rgba(0,212,255,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+.hero-featured {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  group: featured;
+  transition: transform 0.3s;
+}
+.hero-featured:hover { transform: translateY(-3px); }
+.hero-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+}
+.hero-img-placeholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+}
+.hero-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+}
+.tag {
+  display: inline-block;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.tag-blue { background: rgba(0,212,255,0.2); color: var(--neon-blue); border: 1px solid rgba(0,212,255,0.3); }
+.tag-purple { background: rgba(139,92,246,0.2); color: #a78bfa; border: 1px solid rgba(139,92,246,0.3); }
+.tag-pink { background: rgba(244,114,182,0.2); color: var(--neon-pink); border: 1px solid rgba(244,114,182,0.3); }
+.tag-green { background: rgba(0,255,136,0.15); color: var(--neon-green); border: 1px solid rgba(0,255,136,0.3); }
+.tag-red { background: rgba(255,23,68,0.2); color: #ff6b6b; border: 1px solid rgba(255,23,68,0.3); }
+.hero-content h2 { font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.2; }
+.hero-meta { display: flex; align-items: center; gap: 12px; font-size: 12px; color: rgba(255,255,255,0.6); }
+
+.hero-sidebar { display: flex; flex-direction: column; gap: 16px; }
+
+/* ── SECTION HEADER ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.section-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
+}
+.section-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--neon-blue);
+  white-space: nowrap;
+}
+
+/* ── ARTICLE CARD ── */
+.article-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all 0.25s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+.article-card:hover {
+  border-color: rgba(0,212,255,0.35);
+  box-shadow: var(--glow);
+  transform: translateY(-2px);
+}
+.card-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.card-thumb-sm {
+  width: 100px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  border-radius: var(--radius);
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+.card-body { padding: 16px; flex: 1; }
+.card-title { font-family: 'Rajdhani', sans-serif; font-size: 17px; font-weight: 600; color: #fff; line-height: 1.3; margin-bottom: 8px; }
+.card-title-sm { font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 600; color: #fff; line-height: 1.3; margin-bottom: 4px; }
+.card-excerpt { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+.card-meta { display: flex; align-items: center; gap: 10px; font-size: 11px; color: var(--text-dim); margin-top: 10px; }
+.card-meta span { display: flex; align-items: center; gap: 4px; }
+.card-row { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; transition: opacity 0.2s; }
+.card-row:hover { opacity: 0.85; }
+
+.articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.articles-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media(max-width:600px){ .articles-grid-2 { grid-template-columns: 1fr; } }
+
+/* ── GAME CATEGORIES ── */
+.categories-scroll {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+  margin-bottom: 24px;
+}
+.categories-scroll::-webkit-scrollbar { display: none; }
+.cat-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 90px;
+  text-align: center;
+}
+.cat-btn:hover, .cat-btn.active {
+  border-color: var(--neon-blue);
+  background: rgba(0,212,255,0.08);
+  box-shadow: var(--glow);
+}
+.cat-icon { font-size: 28px; line-height: 1; }
+.cat-name { font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; color: var(--text-muted); white-space: nowrap; }
+.cat-btn.active .cat-name { color: var(--neon-blue); }
+
+/* ── SIDEBAR ── */
+.sidebar { display: flex; flex-direction: column; gap: 24px; }
+.sidebar-box {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+
+/* ── TRENDING LIST ── */
+.trending-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.trending-item:last-child { border-bottom: none; }
+.trending-item:hover .trending-title { color: var(--neon-blue); }
+.trending-num {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dim);
+  min-width: 28px;
+  line-height: 1;
+  padding-top: 2px;
+}
+.trending-item:hover .trending-num { color: var(--neon-blue); }
+.trending-title { font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.3; }
+.trending-game { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+
+/* ── LIVE SCORES / ESPORTS ── */
+.esport-match {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  transition: border-color 0.2s;
+  cursor: pointer;
+}
+.esport-match:hover { border-color: rgba(0,212,255,0.3); }
+.team { display: flex; flex-direction: column; align-items: center; flex: 1; }
+.team-icon { font-size: 28px; line-height: 1; }
+.team-name { font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 700; color: #fff; margin-top: 4px; }
+.score-box { text-align: center; }
+.score-text { font-family: 'Share Tech Mono', monospace; font-size: 22px; color: #fff; letter-spacing: 2px; }
+.live-badge {
+  display: inline-block;
+  background: #ff1744;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  animation: pulse-label 1s infinite;
+  margin-bottom: 4px;
+}
+.vs { color: var(--text-dim); font-size: 12px; }
+
+/* ── UPCOMING RELEASES ── */
+.release-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  cursor: pointer;
+}
+.release-item:last-child { border-bottom: none; }
+.release-date-box {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  text-align: center;
+  min-width: 56px;
+  flex-shrink: 0;
+}
+.release-month { font-size: 10px; color: var(--neon-blue); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+.release-day { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; color: #fff; line-height: 1; }
+.release-name { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 600; color: #fff; }
+.release-platform { font-size: 11px; color: var(--text-muted); }
+
+/* ── POPULAR GAMES ── */
+.game-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.game-card:hover {
+  border-color: var(--neon-purple);
+  background: rgba(139,92,246,0.06);
+}
+.game-icon { font-size: 36px; flex-shrink: 0; }
+.game-name { font-family: 'Rajdhani', sans-serif; font-size: 17px; font-weight: 700; color: #fff; }
+.game-players { font-size: 12px; color: var(--neon-green); }
+.game-genre { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.game-bar-wrap { flex: 1; background: var(--bg4); border-radius: 2px; height: 4px; margin-top: 8px; }
+.game-bar { height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple)); }
+
+/* ── NEWSLETTER ── */
+.newsletter {
+  background: linear-gradient(135deg, rgba(0,212,255,0.08) 0%, rgba(139,92,246,0.08) 100%);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  text-align: center;
+  margin: 32px 0;
+}
+.newsletter h3 { font-size: 24px; color: #fff; margin-bottom: 8px; }
+.newsletter p { color: var(--text-muted); font-size: 13px; margin-bottom: 20px; }
+.newsletter-form { display: flex; gap: 10px; max-width: 420px; margin: 0 auto; }
+.newsletter-form input {
+  flex: 1;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  color: var(--text);
+  font-family: 'Exo 2', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.newsletter-form input:focus { border-color: var(--neon-blue); }
+.newsletter-form input::placeholder { color: var(--text-dim); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 12px 24px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* ── COMMENTS ── */
+.comment {
+  display: flex;
+  gap: 12px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.comment:last-child { border-bottom: none; }
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.avatar-blue { background: rgba(0,212,255,0.2); color: var(--neon-blue); border: 1px solid rgba(0,212,255,0.3); }
+.avatar-purple { background: rgba(139,92,246,0.2); color: #a78bfa; border: 1px solid rgba(139,92,246,0.3); }
+.avatar-green { background: rgba(0,255,136,0.15); color: var(--neon-green); border: 1px solid rgba(0,255,136,0.3); }
+.comment-name { font-family: 'Rajdhani', sans-serif; font-size: 14px; font-weight: 700; color: #fff; }
+.comment-time { font-size: 11px; color: var(--text-dim); margin-left: 8px; }
+.comment-text { font-size: 13px; color: var(--text-muted); margin-top: 4px; line-height: 1.5; }
+.comment-likes { font-size: 12px; color: var(--text-dim); margin-top: 6px; cursor: pointer; transition: color 0.2s; }
+.comment-likes:hover { color: var(--neon-blue); }
+
+.comment-input-area {
+  display: flex;
+  gap: 12px;
+  padding-top: 16px;
+}
+.comment-input {
+  flex: 1;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  color: var(--text);
+  font-family: 'Exo 2', sans-serif;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.comment-input:focus { border-color: var(--neon-blue); }
+.comment-input::placeholder { color: var(--text-dim); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 48px 20px 24px;
+  margin-top: 48px;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; max-width: 1280px; margin: 0 auto 40px; }
+@media(max-width:768px){ .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; } }
+@media(max-width:480px){ .footer-grid { grid-template-columns: 1fr; } }
+.footer-logo { font-family: 'Rajdhani', sans-serif; font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+.footer-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; }
+.social-links { display: flex; gap: 10px; }
+.social-link {
+  width: 36px;
+  height: 36px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.social-link:hover { border-color: var(--neon-blue); color: var(--neon-blue); box-shadow: var(--glow); }
+.footer-heading { font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--neon-blue); margin-bottom: 16px; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-link { color: var(--text-muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+.footer-link:hover { color: var(--neon-blue); }
+.footer-bottom { max-width: 1280px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-dim); flex-wrap: wrap; gap: 8px; }
+
+/* ── THUMBNAILS: gradient backgrounds ── */
+.g1 { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); }
+.g2 { background: linear-gradient(135deg, #0d1117, #161b22, #1f3a5f); }
+.g3 { background: linear-gradient(135deg, #1a0533, #2d1b69, #4a148c); }
+.g4 { background: linear-gradient(135deg, #003300, #1a4a00, #264d00); }
+.g5 { background: linear-gradient(135deg, #1a0000, #4d0000, #800000); }
+.g6 { background: linear-gradient(135deg, #001a33, #003366, #004d99); }
+.g7 { background: linear-gradient(135deg, #1a1a00, #333300, #4d4d00); }
+.g8 { background: linear-gradient(135deg, #1a0020, #330040, #4d0060); }
+.g9 { background: linear-gradient(135deg, #001a1a, #003333, #004d4d); }
+.g10 { background: linear-gradient(135deg, #0d0d0d, #1a1a1a, #262626); }
+
+/* ── SECTION PADDING ── */
+section { margin-bottom: 40px; }
+
+/* ── NEON ACCENT DIVIDER ── */
+.neon-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-blue), var(--neon-purple), transparent);
+  margin: 8px 0 24px;
+}
+
+/* ── RGB CORNER ACCENT ── */
+.corner-accent {
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 40px;
+  background: linear-gradient(to bottom, var(--neon-blue), transparent);
+}
+
+/* ── VIEW MORE BTN ── */
+.view-more {
+  display: block;
+  text-align: center;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 12px;
+  width: 100%;
+  text-decoration: none;
+}
+.view-more:hover { border-color: var(--neon-blue); color: var(--neon-blue); background: rgba(0,212,255,0.06); }
+
+/* ── LOADING ANIM ── */
+@keyframes fadeSlideUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.hero { animation: fadeSlideUp 0.5s ease both; }
+main > * { animation: fadeSlideUp 0.6s ease both; }
+
+/* ── MOBILE ── */
+@media(max-width:640px){
+  nav { padding: 0 12px; }
+  .nav-links { display: none; }
+  .nav-search { min-width: 140px; }
+  .hero { padding: 32px 12px; }
+  .hero-content h2 { font-size: 20px; }
+  main { padding: 20px 12px; gap: 24px; }
+  footer { padding: 32px 12px 16px; }
+}
+
+/* ── CAROUSEL ── */
+.carousel-wrap { position: relative; overflow: hidden; }
+.carousel-track { display: flex; gap: 16px; transition: transform 0.4s cubic-bezier(0.25,0.8,0.25,1); }
+.carousel-item { flex-shrink: 0; width: 220px; }
+.carousel-arrows { display: flex; gap: 8px; margin-top: 12px; justify-content: flex-end; }
+.carousel-arrow {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text-muted);
+  font-size: 16px;
+}
+.carousel-arrow:hover { border-color: var(--neon-blue); color: var(--neon-blue); }
+
+/* ── PULSE DOTS ── */
+.online-dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--neon-green);
+  box-shadow: 0 0 8px var(--neon-green);
+  animation: blink 2s ease-in-out infinite;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+.hot-tag {
+  display: inline-block;
+  background: linear-gradient(90deg, #ff6b00, #ff1744);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+</style>
+</head>
+<body>
+
+<!-- BREAKING NEWS TICKER -->
+<div class="ticker-wrap">
+  <span class="ticker-label">⚡ BREAKING</span>
+  <div style="display:inline-block;overflow:hidden;width:calc(100% - 120px);vertical-align:middle;">
+    <div class="ticker-track">
+      <span>GTA 6 release date confirmed for Fall 2025 — Rockstar Games drops bombshell trailer</span>
+      <span>Fortnite Chapter 6 Season 2 launches with massive map overhaul</span>
+      <span>CS2 Major announced for Stockholm with $2 million prize pool</span>
+      <span>Marvel Rivals hits 50 million players — Season 3 roadmap revealed</span>
+      <span>Nintendo Direct February reveals Switch 2 launch lineup</span>
+      <span>Valorant Champions Tour 2026 tickets now on sale worldwide</span>
+      <span>Call of Duty Black Ops 7 officially teased by Activision</span>
+      <span>Apex Legends new character "Specter" leaked ahead of reveal</span>
+      <span>EA FC 26 introduces real-time physics overhaul system</span>
+      <span>GTA 6 release date confirmed for Fall 2025 — Rockstar Games drops bombshell trailer</span>
+      <span>Fortnite Chapter 6 Season 2 launches with massive map overhaul</span>
+      <span>CS2 Major announced for Stockholm with $2 million prize pool</span>
+      <span>Marvel Rivals hits 50 million players — Season 3 roadmap revealed</span>
+      <span>Nintendo Direct February reveals Switch 2 launch lineup</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-icon">⚡</div>
+    GAME<span class="logo-pulse">PULSE</span>
+  </a>
+  <div class="nav-links">
+    <a href="#" class="nav-link active">Home</a>
+    <a href="#news" class="nav-link">News</a>
+    <a href="#esports" class="nav-link">Esports</a>
+    <a href="#reviews" class="nav-link">Reviews</a>
+    <a href="#releases" class="nav-link">Releases</a>
+    <a href="#community" class="nav-link">Community</a>
+    <a href="#" class="nav-link">Videos</a>
+    <a href="#" class="nav-link">Guides</a>
+  </div>
+  <div class="nav-search">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" placeholder="Search games, news...">
+  </div>
+  <button class="nav-btn">Sign In</button>
+</nav>
+
+<!-- HERO SECTION -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-grid">
+    <!-- Main Featured -->
+    <div class="hero-featured">
+      <div class="hero-img-placeholder g1">
+        <span style="position:absolute;font-size:90px;opacity:0.15">🎮</span>
+        <span style="position:relative;z-index:1;font-size:70px">🚗</span>
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="tag tag-red">🔥 EXCLUSIVE</span>
+        <h2>GTA 6: Rockstar Confirms Release Window, Reveals New Gameplay Features & Vice City Map Details</h2>
+        <div class="hero-meta">
+          <span>📰 Staff Reporter</span>
+          <span>• 2 hours ago</span>
+          <span>• 47,821 views</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Sidebar Cards -->
+    <div class="hero-sidebar">
+      <div class="hero-featured" style="flex:1">
+        <div class="hero-img-placeholder g3" style="aspect-ratio:21/9">
+          <span style="position:absolute;font-size:60px;opacity:0.12">🎮</span>
+          <span style="position:relative;z-index:1;font-size:48px">🦸</span>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content" style="padding:16px">
+          <span class="tag tag-purple">Marvel Rivals</span>
+          <h2 style="font-size:18px">Season 3 Brings Dr. Doom, New Map & Ranked Overhaul</h2>
+          <div class="hero-meta"><span>3 hours ago</span><span>• 31K views</span></div>
+        </div>
+      </div>
+      <div class="hero-featured" style="flex:1">
+        <div class="hero-img-placeholder g6" style="aspect-ratio:21/9">
+          <span style="position:absolute;font-size:60px;opacity:0.12">🎮</span>
+          <span style="position:relative;z-index:1;font-size:48px">🎯</span>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content" style="padding:16px">
+          <span class="tag tag-blue">Esports</span>
+          <h2 style="font-size:18px">CS2 Major Stockholm: Teams, Schedule & How to Watch</h2>
+          <div class="hero-meta"><span>1 hour ago</span><span>• 28K views</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GAME CATEGORIES -->
+<div style="background:var(--bg2);border-bottom:1px solid var(--border);padding:20px 0;">
+  <div class="container">
+    <div class="categories-scroll">
+      <button class="cat-btn active" onclick="filterCat(this,'all')">
+        <span class="cat-icon">🎮</span>
+        <span class="cat-name">All Games</span>
+      </button>
+      <button class="cat-btn" onclick="filterCat(this,'fortnite')">
+        <span class="cat-icon">🏆</span>
+        <span class="cat-name">Fortnite</span>
+      </button>
+      <button class="cat-btn" onclick="filterCat(this,'gta')">
+        <span class="cat-icon">🚗</span>
+        <span class="cat-name">GTA 6</span>
+      </button>
+      <button class="cat-btn" onclick="filterCat(this,'minecraft')">
+        <span class="cat-icon">⛏️</span>
+        <span class="cat-name">Minecraft</span>
+      </button>
+      <button class="cat-btn" onclick="filterCat(this,'roblox')">
+        <span class="cat-icon">🧱</span>
+        <span class="cat-name">Roblox</span>
+      </button>
+      <button class="cat-btn" onclick="filterCat(this,'cod')">
+        <span class="cat-icon">🪖</span>
+        <span class="cat-name">Call of Duty</span>
+      </button>
+      <button class="cat-btn" onclick="filterCat(this,'valorant')">
+        <span class="cat-icon">🎯</span>
+        <span class="cat-name">Valorant</span>
+      </button>
+      <button class="cat-btn" onclick="filterCat(this,'eafc')">
+        <span class="cat-icon">⚽</span>
+        <span class="cat-name">EA FC</span>
+      </button>
+      <button class="cat-btn" onclick="filterCat(this,'rocket')">
+        <span class="cat-icon">🚀</span>
+        <span class="cat-name">Rocket League</span>
+      </button>
+      <button class="cat-btn" onclick="filterCat(this,'cs2')">
+        <span class="cat-icon">💣</span>
+        <span class="cat-name">CS2</span>
+      </button>
+      <button class="cat-btn" onclick="filterCat(this,'apex')">
+        <span class="cat-icon">⚡</span>
+        <span class="cat-name">Apex Legends</span>
+      </button>
+      <button class="cat-btn" onclick="filterCat(this,'pubg')">
+        <span class="cat-icon">🎖️</span>
+        <span class="cat-name">PUBG</span>
+      </button>
+      <button class="cat-btn" onclick="filterCat(this,'lol')">
+        <span class="cat-icon">🏛️</span>
+        <span class="cat-name">League of Legends</span>
+      </button>
+      <button class="cat-btn" onclick="filterCat(this,'marvel')">
+        <span class="cat-icon">🦸</span>
+        <span class="cat-name">Marvel Rivals</span>
+      </button>
+      <button class="cat-btn" onclick="filterCat(this,'nintendo')">
+        <span class="cat-icon">🍄</span>
+        <span class="cat-name">Nintendo</span>
+      </button>
+      <button class="cat-btn" onclick="filterCat(this,'ps5')">
+        <span class="cat-icon">🎮</span>
+        <span class="cat-name">PlayStation</span>
+      </button>
+      <button class="cat-btn" onclick="filterCat(this,'xbox')">
+        <span class="cat-icon">🟢</span>
+        <span class="cat-name">Xbox</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main>
+  <!-- LEFT: NEWS FEED -->
+  <div>
+
+    <!-- LATEST GAMING NEWS -->
+    <section id="news">
+      <div class="section-header">
+        <div class="section-title">⚡ Latest News</div>
+        <div class="section-line"></div>
+        <span class="mono" style="font-size:11px;color:var(--text-dim)">Updated 3 min ago</span>
+      </div>
+      <div class="neon-divider"></div>
+      <div class="articles-grid">
+
+        <div class="article-card">
+          <div class="card-thumb g1">
+            <span style="position:absolute;font-size:60px;opacity:0.1">🎮</span>
+            <span style="position:relative;z-index:1;font-size:42px">🏆</span>
+          </div>
+          <div class="card-body">
+            <span class="tag tag-blue" style="margin-bottom:8px">Fortnite</span>
+            <div class="card-title">Chapter 6 Season 2: All New POIs, Weapons & Battle Pass Skins Revealed</div>
+            <div class="card-excerpt">Epic Games drops the full breakdown of what's coming in the most anticipated season yet, featuring a Japanese-themed map overhaul...</div>
+            <div class="card-meta"><span>⏱ 1 hour ago</span><span>👁 22,450</span><span>💬 384</span></div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <div class="card-thumb g3">
+            <span style="position:absolute;font-size:60px;opacity:0.1">🎮</span>
+            <span style="position:relative;z-index:1;font-size:42px">⛏️</span>
+          </div>
+          <div class="card-body">
+            <span class="tag tag-green" style="margin-bottom:8px">Minecraft</span>
+            <div class="card-title">Minecraft 1.22 "Vibrant Visuals" Update Overhauls Graphics Engine Completely</div>
+            <div class="card-excerpt">Mojang announces the biggest visual update in Minecraft's 15-year history, bringing real-time lighting and dynamic shadows...</div>
+            <div class="card-meta"><span>⏱ 2 hours ago</span><span>👁 18,930</span><span>💬 251</span></div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <div class="card-thumb g5">
+            <span style="position:absolute;font-size:60px;opacity:0.1">🎮</span>
+            <span style="position:relative;z-index:1;font-size:42px">🪖</span>
+          </div>
+          <div class="card-body">
+            <span class="tag tag-red" style="margin-bottom:8px">Call of Duty</span>
+            <div class="card-title">Black Ops 7 First Look: Campaign, Multiplayer Modes & Zombies Details Leaked</div>
+            <div class="card-excerpt">A massive leak from internal QA testers reveals the full game structure of Activision's upcoming title set in 2027...</div>
+            <div class="card-meta"><span>⏱ 3 hours ago</span><span>👁 41,200</span><span>💬 892</span></div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <div class="card-thumb g9">
+            <span style="position:absolute;font-size:60px;opacity:0.1">🎮</span>
+            <span style="position:relative;z-index:1;font-size:42px">⚡</span>
+          </div>
+          <div class="card-body">
+            <span class="tag tag-pink" style="margin-bottom:8px">Apex Legends</span>
+            <div class="card-title">New Legend "Specter" Abilities Confirmed — Full Kit Breakdown & Release Date</div>
+            <div class="card-excerpt">Respawn officially unveils the highly anticipated new Legend with a unique drone-based ability set that could change ranked meta...</div>
+            <div class="card-meta"><span>⏱ 4 hours ago</span><span>👁 16,780</span><span>💬 307</span></div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <div class="card-thumb g7">
+            <span style="position:absolute;font-size:60px;opacity:0.1">🎮</span>
+            <span style="position:relative;z-index:1;font-size:42px">🏛️</span>
+          </div>
+          <div class="card-body">
+            <span class="tag tag-purple" style="margin-bottom:8px">League of Legends</span>
+            <div class="card-title">Riot Games Reveals 3 New Champions for 2026 — Arcane Season 3 Tie-Ins Confirmed</div>
+            <div class="card-excerpt">The Riot Pls presentation drops big news with three new champions and crossover content with the hit animated series...</div>
+            <div class="card-meta"><span>⏱ 5 hours ago</span><span>👁 29,100</span><span>💬 541</span></div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <div class="card-thumb g4">
+            <span style="position:absolute;font-size:60px;opacity:0.1">🎮</span>
+            <span style="position:relative;z-index:1;font-size:42px">🧱</span>
+          </div>
+          <div class="card-body">
+            <span class="tag tag-red" style="margin-bottom:8px">Roblox</span>
+            <div class="card-title">Roblox Introduces AI-Powered NPC System — Developers Can Now Build Smarter Worlds</div>
+            <div class="card-excerpt">The platform's biggest developer update gives creators access to conversational AI NPCs that respond dynamically to players...</div>
+            <div class="card-meta"><span>⏱ 6 hours ago</span><span>👁 14,500</span><span>💬 218</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESPORTS NEWS -->
+    <section id="esports">
+      <div class="section-header">
+        <div class="section-title">🏆 Esports</div>
+        <div class="section-line"></div>
+      </div>
+      <div class="neon-divider"></div>
+
+      <!-- Live Matches -->
+      <div style="margin-bottom:20px">
+        <div style="font-size:12px;color:var(--text-muted);margin-bottom:12px;font-family:'Rajdhani',sans-serif;font-weight:700;letter-spacing:0.1em;text-transform:uppercase">
+          <span class="online-dot"></span> Live Now
+        </div>
+        <div class="esport-match">
+          <div class="team">
+            <div class="team-icon">🦁</div>
+            <div class="team-name">NaVi</div>
+          </div>
+          <div class="score-box">
+            <div class="live-badge">LIVE</div>
+            <div class="score-text">13 : 9</div>
+            <div style="font-size:10px;color:var(--text-dim);margin-top:2px">CS2 • Major Stockholm</div>
+          </div>
+          <div class="team">
+            <div class="team-icon">🦅</div>
+            <div class="team-name">FaZe Clan</div>
+          </div>
+        </div>
+        <div class="esport-match">
+          <div class="team">
+            <div class="team-icon">🐉</div>
+            <div class="team-name">T1</div>
+          </div>
+          <div class="score-box">
+            <div class="live-badge">LIVE</div>
+            <div class="score-text">2 : 1</div>
+            <div style="font-size:10px;color:var(--text-dim);margin-top:2px">LoL • Worlds 2026</div>
+          </div>
+          <div class="team">
+            <div class="team-icon">🔥</div>
+            <div class="team-name">Gen.G</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Esports Articles Grid -->
+      <div class="articles-grid-2">
+        <div class="article-card">
+          <div class="card-thumb g6" style="aspect-ratio:21/9">
+            <span style="font-size:36px">🎯</span>
+          </div>
+          <div class="card-body">
+            <span class="tag tag-blue">Valorant</span>
+            <div class="card-title" style="margin-top:8px">VCT 2026 Champions Tour Finals: Preview, Predictions & Schedule</div>
+            <div class="card-meta"><span>⏱ 2 hours ago</span><span>👁 19,340</span></div>
+          </div>
+        </div>
+        <div class="article-card">
+          <div class="card-thumb g3" style="aspect-ratio:21/9">
+            <span style="font-size:36px">🚀</span>
+          </div>
+          <div class="card-body">
+            <span class="tag tag-purple">Rocket League</span>
+            <div class="card-title" style="margin-top:8px">RLCS World Championship Bracket Revealed — Top 8 Teams to Watch</div>
+            <div class="card-meta"><span>⏱ 5 hours ago</span><span>👁 11,200</span></div>
+          </div>
+        </div>
+        <div class="article-card">
+          <div class="card-thumb g5" style="aspect-ratio:21/9">
+            <span style="font-size:36px">💣</span>
+          </div>
+          <div class="card-body">
+            <span class="tag tag-red">CS2</span>
+            <div class="card-title" style="margin-top:8px">Stockholm Major Prize Pool Breakdown & Team Qualified Roster List</div>
+            <div class="card-meta"><span>⏱ 6 hours ago</span><span>👁 22,800</span></div>
+          </div>
+        </div>
+        <div class="article-card">
+          <div class="card-thumb g7" style="aspect-ratio:21/9">
+            <span style="font-size:36px">🎖️</span>
+          </div>
+          <div class="card-body">
+            <span class="tag tag-green">PUBG</span>
+            <div class="card-title" style="margin-top:8px">PCS 9 Asia-Pacific: Korean Teams Dominate Opening Week Results</div>
+            <div class="card-meta"><span>⏱ 8 hours ago</span><span>👁 8,950</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NINTENDO / PLATFORM NEWS -->
+    <section id="reviews">
+      <div class="section-header">
+        <div class="section-title">🎮 Platform News</div>
+        <div class="section-line"></div>
+      </div>
+      <div class="neon-divider"></div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="card-row">
+          <div class="card-thumb-sm g4"><span style="font-size:24px">🍄</span></div>
+          <div>
+            <span class="tag tag-green" style="margin-bottom:6px">Nintendo</span>
+            <div class="card-title-sm">Switch 2 Launch Lineup Revealed: Mario Kart World, Zelda: Echoes of the Past & 12 More Titles <span class="hot-tag">HOT</span></div>
+            <div class="card-meta"><span>⏱ 3 hours ago</span><span>👁 55,200</span><span>💬 1,203</span></div>
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="card-thumb-sm g2"><span style="font-size:24px">🎮</span></div>
+          <div>
+            <span class="tag tag-blue" style="margin-bottom:6px">PlayStation</span>
+            <div class="card-title-sm">PS5 Pro Price Drop Announced — Sony Cuts $100 Ahead of Switch 2 Launch</div>
+            <div class="card-meta"><span>⏱ 4 hours ago</span><span>👁 38,100</span><span>💬 876</span></div>
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="card-thumb-sm g10"><span style="font-size:24px">🟢</span></div>
+          <div>
+            <span class="tag tag-green" style="margin-bottom:6px">Xbox</span>
+            <div class="card-title-sm">Xbox Game Pass Ultra Launches with 300+ Day-One Titles Including Starfield 2</div>
+            <div class="card-meta"><span>⏱ 7 hours ago</span><span>👁 26,500</span><span>💬 432</span></div>
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="card-thumb-sm g4"><span style="font-size:24px">🍄</span></div>
+          <div>
+            <span class="tag tag-green" style="margin-bottom:6px">Nintendo</span>
+            <div class="card-title-sm">Pokémon Legends: Z-A Gets New Gameplay Trailer — Lumiose City Fully Explored</div>
+            <div class="card-meta"><span>⏱ 9 hours ago</span><span>👁 44,700</span><span>💬 920</span></div>
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="card-thumb-sm g2"><span style="font-size:24px">🎮</span></div>
+          <div>
+            <span class="tag tag-blue" style="margin-bottom:6px">PlayStation</span>
+            <div class="card-title-sm">God of War Ragnarök PC Port Review — The Best Version of a Perfect Game</div>
+            <div class="card-meta"><span>⏱ 10 hours ago</span><span>👁 31,800</span><span>💬 614</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <div class="newsletter">
+      <div style="font-size:32px;margin-bottom:8px">📨</div>
+      <h3>Stay Ahead of the Game</h3>
+      <p>Get breaking gaming news, exclusive leaks, and esports results delivered to your inbox daily. Zero spam, pure gaming.</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="your@email.com">
+        <button class="btn-primary">Subscribe</button>
+      </div>
+      <div style="font-size:11px;color:var(--text-dim);margin-top:12px">Join 480,000+ gamers. Unsubscribe anytime.</div>
+    </div>
+
+    <!-- COMMENTS -->
+    <section id="community">
+      <div class="section-header">
+        <div class="section-title">💬 Community</div>
+        <div class="section-line"></div>
+        <span style="font-size:12px;color:var(--text-muted)">Top Comments</span>
+      </div>
+      <div class="neon-divider"></div>
+      <div class="sidebar-box">
+        <div class="comment">
+          <div class="avatar avatar-blue">GX</div>
+          <div>
+            <div><span class="comment-name">GamerX_99</span><span class="comment-time">8 minutes ago</span></div>
+            <div class="comment-text">GTA 6 finally!! Been waiting since 2013 for a new setting. Vice City is gonna go crazy with the new engine 🔥</div>
+            <div class="comment-likes">👍 1,284 · 💬 Reply</div>
+          </div>
+        </div>
+        <div class="comment">
+          <div class="avatar avatar-purple">NP</div>
+          <div>
+            <div><span class="comment-name">NoScope_Pro</span><span class="comment-time">22 minutes ago</span></div>
+            <div class="comment-text">The CS2 Major Stockholm is going to be insane. NaVi vs FaZe in the Grand Final prediction? Let's go 🎯</div>
+            <div class="comment-likes">👍 892 · 💬 Reply</div>
+          </div>
+        </div>
+        <div class="comment">
+          <div class="avatar avatar-green">PX</div>
+          <div>
+            <div><span class="comment-name">PixelQueen</span><span class="comment-time">45 minutes ago</span></div>
+            <div class="comment-text">Switch 2 lineup is genuinely mind-blowing. Mario Kart World on day one? Nintendo just won 2026 before it even started lol</div>
+            <div class="comment-likes">👍 2,103 · 💬 Reply</div>
+          </div>
+        </div>
+        <div class="comment">
+          <div class="avatar avatar-blue">RL</div>
+          <div>
+            <div><span class="comment-name">RocketLord</span><span class="comment-time">1 hour ago</span></div>
+            <div class="comment-text">Apex Legends new legend sounds broken already 💀 Respawn needs to balance test properly before Season 22 hits ranked...</div>
+            <div class="comment-likes">👍 567 · 💬 Reply</div>
+          </div>
+        </div>
+        <div class="comment-input-area">
+          <div class="avatar avatar-purple">?</div>
+          <input class="comment-input" type="text" placeholder="Join the discussion...">
+          <button class="btn-primary" style="padding:10px 16px">Post</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- RIGHT: SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- TRENDING -->
+    <div class="sidebar-box">
+      <div class="section-header" style="margin-bottom:8px">
+        <div class="section-title">🔥 Trending</div>
+      </div>
+      <div class="neon-divider"></div>
+      <div class="trending-item"><div class="trending-num">01</div><div><div class="trending-title">GTA 6 Release Date & Full Map Revealed <span class="hot-tag">HOT</span></div><div class="trending-game">GTA 6 • 2 hours ago</div></div></div>
+      <div class="trending-item"><div class="trending-num">02</div><div><div class="trending-title">Switch 2 Day One Lineup: All 14 Launch Games</div><div class="trending-game">Nintendo • 3 hours ago</div></div></div>
+      <div class="trending-item"><div class="trending-num">03</div><div><div class="trending-title">Marvel Rivals Season 3 — Full Patch Notes</div><div class="trending-game">Marvel Rivals • 4 hours ago</div></div></div>
+      <div class="trending-item"><div class="trending-num">04</div><div><div class="trending-title">Fortnite x Naruto Collab Officially Confirmed</div><div class="trending-game">Fortnite • 5 hours ago</div></div></div>
+      <div class="trending-item"><div class="trending-num">05</div><div><div class="trending-title">CS2 Major $2M Prize Pool: All Qualified Teams</div><div class="trending-game">CS2 • 6 hours ago</div></div></div>
+      <div class="trending-item"><div class="trending-num">06</div><div><div class="trending-title">EA FC 26 New Player Ratings Leaked Online</div><div class="trending-game">EA FC • 7 hours ago</div></div></div>
+      <div class="trending-item"><div class="trending-num">07</div><div><div class="trending-title">Valorant New Agent "Mirage" Full Ability Kit</div><div class="trending-game">Valorant • 8 hours ago</div></div></div>
+      <a href="#" class="view-more">View All Trending →</a>
+    </div>
+
+    <!-- UPCOMING RELEASES -->
+    <div class="sidebar-box" id="releases">
+      <div class="section-header" style="margin-bottom:8px">
+        <div class="section-title">📅 Upcoming Releases</div>
+      </div>
+      <div class="neon-divider"></div>
+      <div class="release-item">
+        <div class="release-date-box"><div class="release-month">JUN</div><div class="release-day">06</div></div>
+        <div><div class="release-name">GTA VI</div><div class="release-platform">🎮 PS5 · Xbox Series X</div></div>
+      </div>
+      <div class="release-item">
+        <div class="release-date-box"><div class="release-month">JUN</div><div class="release-day">14</div></div>
+        <div><div class="release-name">Elden Ring Nightreign</div><div class="release-platform">🎮 PS5 · Xbox · PC</div></div>
+      </div>
+      <div class="release-item">
+        <div class="release-date-box"><div class="release-month">JUN</div><div class="release-day">24</div></div>
+        <div><div class="release-name">Mario Kart World</div><div class="release-platform">🍄 Nintendo Switch 2</div></div>
+      </div>
+      <div class="release-item">
+        <div class="release-date-box"><div class="release-month">JUL</div><div class="release-day">11</div></div>
+        <div><div class="release-name">Doom: The Dark Ages</div><div class="release-platform">🎮 All Platforms</div></div>
+      </div>
+      <div class="release-item">
+        <div class="release-date-box"><div class="release-month">AUG</div><div class="release-day">22</div></div>
+        <div><div class="release-name">Hollow Knight: Silksong</div><div class="release-platform">🎮 All Platforms</div></div>
+      </div>
+      <div class="release-item">
+        <div class="release-date-box"><div class="release-month">SEP</div><div class="release-day">05</div></div>
+        <div><div class="release-name">Call of Duty: Black Ops 7</div><div class="release-platform">🎮 All Platforms</div></div>
+      </div>
+      <a href="#" class="view-more">Full Release Calendar →</a>
+    </div>
+
+    <!-- POPULAR GAMES -->
+    <div class="sidebar-box">
+      <div class="section-header" style="margin-bottom:8px">
+        <div class="section-title">📊 Most Played</div>
+      </div>
+      <div class="neon-divider"></div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="game-card">
+          <div class="game-icon">🏆</div>
+          <div style="flex:1">
+            <div class="game-name">Fortnite</div>
+            <div class="game-players"><span class="online-dot"></span>4.2M playing</div>
+            <div class="game-genre">Battle Royale</div>
+            <div class="game-bar-wrap"><div class="game-bar" style="width:92%"></div></div>
+          </div>
+        </div>
+        <div class="game-card">
+          <div class="game-icon">⛏️</div>
+          <div style="flex:1">
+            <div class="game-name">Minecraft</div>
+            <div class="game-players"><span class="online-dot"></span>3.8M playing</div>
+            <div class="game-genre">Sandbox / Survival</div>
+            <div class="game-bar-wrap"><div class="game-bar" style="width:84%"></div></div>
+          </div>
+        </div>
+        <div class="game-card">
+          <div class="game-icon">💣</div>
+          <div style="flex:1">
+            <div class="game-name">CS2</div>
+            <div class="game-players"><span class="online-dot"></span>1.6M playing</div>
+            <div class="game-genre">Tactical FPS</div>
+            <div class="game-bar-wrap"><div class="game-bar" style="width:60%"></div></div>
+          </div>
+        </div>
+        <div class="game-card">
+          <div class="game-icon">🦸</div>
+          <div style="flex:1">
+            <div class="game-name">Marvel Rivals</div>
+            <div class="game-players"><span class="online-dot"></span>2.1M playing</div>
+            <div class="game-genre">Hero Shooter</div>
+            <div class="game-bar-wrap"><div class="game-bar" style="width:72%"></div></div>
+          </div>
+        </div>
+        <div class="game-card">
+          <div class="game-icon">🎯</div>
+          <div style="flex:1">
+            <div class="game-name">Valorant</div>
+            <div class="game-players"><span class="online-dot"></span>1.9M playing</div>
+            <div class="game-genre">Tactical FPS</div>
+            <div class="game-bar-wrap"><div class="game-bar" style="width:68%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="sidebar-box">
+      <div class="section-header" style="margin-bottom:8px">
+        <div class="section-title">🔗 Quick Links</div>
+      </div>
+      <div class="neon-divider"></div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <a href="#" class="view-more" style="margin-top:0">🏆 Esports Schedule</a>
+        <a href="#" class="view-more">🎮 Game Reviews</a>
+        <a href="#" class="view-more">📊 Tier Lists</a>
+        <a href="#" class="view-more">🎯 Pro Settings Database</a>
+        <a href="#" class="view-more">💰 Best Gaming Deals</a>
+      </div>
+    </div>
+
+  </aside>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">⚡ GAMEPULSE</div>
+      <p class="footer-desc">The internet's fastest gaming news source. From AAA releases to indie gems, esports results to insider leaks — we keep you ahead of the curve.</p>
+      <div class="social-links">
+        <a href="#" class="social-link" title="Twitter/X">𝕏</a>
+        <a href="#" class="social-link" title="Discord">💬</a>
+        <a href="#" class="social-link" title="YouTube">▶</a>
+        <a href="#" class="social-link" title="Twitch">🎮</a>
+        <a href="#" class="social-link" title="Instagram">📸</a>
+        <a href="#" class="social-link" title="TikTok">🎵</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Games</div>
+      <div class="footer-links">
+        <a href="#" class="footer-link">Fortnite</a>
+        <a href="#" class="footer-link">GTA 6</a>
+        <a href="#" class="footer-link">Minecraft</a>
+        <a href="#" class="footer-link">Call of Duty</a>
+        <a href="#" class="footer-link">Valorant</a>
+        <a href="#" class="footer-link">Apex Legends</a>
+        <a href="#" class="footer-link">CS2</a>
+        <a href="#" class="footer-link">Marvel Rivals</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Sections</div>
+      <div class="footer-links">
+        <a href="#" class="footer-link">News</a>
+        <a href="#" class="footer-link">Reviews</a>
+        <a href="#" class="footer-link">Esports</a>
+        <a href="#" class="footer-link">Guides</a>
+        <a href="#" class="footer-link">Tier Lists</a>
+        <a href="#" class="footer-link">Deals</a>
+        <a href="#" class="footer-link">Videos</a>
+        <a href="#" class="footer-link">Community</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Company</div>
+      <div class="footer-links">
+        <a href="#" class="footer-link">About Us</a>
+        <a href="#" class="footer-link">Advertise</a>
+        <a href="#" class="footer-link">Careers</a>
+        <a href="#" class="footer-link">Contact</a>
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="#" class="footer-link">Terms of Use</a>
+        <a href="#" class="footer-link">Cookie Settings</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 GamePulse Media Ltd. All rights reserved.</span>
+    <span class="mono" style="color:var(--text-dim);font-size:11px">v4.2.1 · ⚡ 99ms load</span>
+  </div>
+</footer>
+
+<script>
+// Category filter
+function filterCat(btn, cat) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    const el = id && document.getElementById(id);
+    if (el) { e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+  });
+});
+
+// Newsletter submit
+document.querySelector('.newsletter-form button').addEventListener('click', () => {
+  const input = document.querySelector('.newsletter-form input');
+  if (input.value.includes('@')) {
+    input.value = '';
+    input.placeholder = '✓ You\'re subscribed!';
+    setTimeout(() => { input.placeholder = 'your@email.com'; }, 3000);
+  }
+});
+
+// Comment likes
+document.querySelectorAll('.comment-likes').forEach(el => {
+  el.addEventListener('click', () => {
+    const m = el.textContent.match(/👍 ([\d,]+)/);
+    if (m) {
+      const n = parseInt(m[1].replace(',','')) + 1;
+      el.textContent = el.textContent.replace(/👍 [\d,]+/, '👍 ' + n.toLocaleString());
+    }
+  });
+});
+
+// Comment post
+document.querySelector('.comment-input-area button').addEventListener('click', () => {
+  const input = document.querySelector('.comment-input');
+  if (input.value.trim()) {
+    input.value = '';
+    input.placeholder = '✓ Comment posted!';
+    setTimeout(() => { input.placeholder = 'Join the discussion...'; }, 2000);
+  }
+});
+
+// Ticker pause on hover
+const ticker = document.querySelector('.ticker-track');
+ticker.parentElement.addEventListener('mouseenter', () => ticker.style.animationPlayState = 'paused');
+ticker.parentElement.addEventListener('mouseleave', () => ticker.style.animationPlayState = 'running');
+
+// Stagger card animation on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('.article-card, .esport-match, .game-card').forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = `opacity 0.4s ease ${(i % 6) * 0.07}s, transform 0.4s ease ${(i % 6) * 0.07}s, border-color 0.25s, box-shadow 0.25s`;
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>
